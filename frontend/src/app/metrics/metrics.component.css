@@ -1,0 +1,111 @@
+.metrics-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5em;
+  margin-bottom: 2em;
+}
+.card {
+  min-width: 180px;
+  flex: 1 1 180px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  padding: 1.2em 1em;
+  text-align: center;
+  margin-bottom: 0.5em;
+}
+.card-title {
+  font-size: 1.1em;
+  color: #2a4d7a;
+  margin-bottom: 0.3em;
+  font-weight: 500;
+}
+.card-value {
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 0.2em;
+}
+.card-value.apto {
+  color: #2ecc40;
+}
+.card-value.no-apto {
+  color: #e15759;
+}
+
+.education-dist {
+  margin-top: 2em;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  padding: 1.5em;
+}
+.education-bar {
+  display: flex;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 1em;
+  min-height: 48px;
+  box-shadow: 0 1px 4px #0001;
+  gap: 6px;
+  background: #fff;
+}
+.education-segment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 14px;
+  min-width: 80px;
+  position: relative;
+  border-right: none;
+  transition: background 0.2s;
+}
+.education-segment:last-child {
+  border-right: none;
+}
+.education-label {
+  color: #fff;
+  font-size: 1em;
+  text-align: center;
+  line-height: 1.2;
+  word-break: break-word;
+  text-shadow: 1px 1px 2px #000a;
+  white-space: normal;
+  margin: 0 10px;
+}
+/* Si el segmento es muy pequeño, reduce la fuente */
+.education-segment[style*='width: 5%'] .education-label,
+.education-segment[style*='width: 6%'] .education-label,
+.education-segment[style*='width: 7%'] .education-label {
+  font-size: 0.8em;
+  padding: 0;
+}
+/* Oculta el texto si el segmento es demasiado pequeño */
+.education-segment[style*='width: 3%'] .education-label,
+.education-segment[style*='width: 2%'] .education-label,
+.education-segment[style*='width: 1%'] .education-label {
+  display: none;
+}
+/* Oculta segmentos con 0% */
+.education-segment[style*='width: 0%'] {
+  display: none !important;
+}
+.education-legend {
+  display: flex;
+  gap: 1.5em;
+  margin-top: 0.5em;
+  flex-wrap: wrap;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  font-size: 1em;
+}
+.legend-color {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  margin-right: 0.5em;
+  border: 1px solid #bfc9d1;
+}

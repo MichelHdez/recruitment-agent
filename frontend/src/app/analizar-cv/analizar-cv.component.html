@@ -1,0 +1,47 @@
+<div class="container mt-4">
+  <h2>Analizar compatibilidad de candidato</h2>
+  <form (ngSubmit)="analizar()" #analizarForm="ngForm" class="mb-4">
+    <div class="mb-3">
+      <label for="vacante" class="form-label">Vacante</label>
+      <select id="vacante" class="form-control" [(ngModel)]="vacanteId" name="vacanteId" required>
+        <option [ngValue]="null">Selecciona una vacante</option>
+        <option *ngFor="let v of vacantes" [ngValue]="v.id">{{v.title}}</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="cvText" class="form-label">Descripción del candidato (CV)</label>
+      <textarea id="cvText" class="form-control" [(ngModel)]="cvText" name="cvText" rows="6" required></textarea>
+    </div>
+    <div class="mb-3">
+      <label for="candidateName" class="form-label">Nombre del candidato</label>
+      <input id="candidateName" type="text" class="form-control" [(ngModel)]="candidateName" required placeholder="Ingresa el nombre completo">
+    </div>
+    <div class="mb-3">
+      <label for="education" class="form-label">Nivel educativo</label>
+      <select id="education" class="form-control" [(ngModel)]="education" name="education" required>
+        <option value="">Selecciona el nivel educativo</option>
+        <option value="Licenciatura">Licenciatura</option>
+        <option value="Ingeniería">Ingeniería</option>
+        <option value="Maestría">Maestría</option>
+        <option value="Doctorado">Doctorado</option>
+        <option value="Técnico">Técnico</option>
+        <option value="Otro">Otro</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!vacanteId || !cvText || loading">Analizar compatibilidad</button>
+  </form>
+
+  <div *ngIf="feedback" class="card p-3 mb-3">
+    <h5>Resultado IA</h5>
+    <div *ngIf="feedback.cohereScore !== null">
+      <span class="badge bg-info text-dark mb-2">Score: {{feedback.cohereScore}}%</span>
+      <div>{{feedback.cohereSummary}}</div>
+      <button class="btn btn-success mt-3" (click)="guardarCV()" [disabled]="guardando">Guardar este candidato</button>
+    </div>
+    <div *ngIf="feedback.cohereScore === null">
+      <span class="text-danger">No se pudo obtener el análisis de Cohere.</span>
+    </div>
+    <div *ngIf="guardado" class="alert alert-success mt-3">¡CV guardado correctamente!</div>
+    <div *ngIf="errorGuardado" class="alert alert-danger mt-3">Error al guardar el CV.</div>
+  </div>
+</div>

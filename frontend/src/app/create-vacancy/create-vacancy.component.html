@@ -1,0 +1,28 @@
+<h2>Crear Vacante</h2>
+<form (ngSubmit)="createVacancy()" class="vacancy-form">
+  <div class="mb-3">
+    <label for="title" class="form-label">Título</label>
+    <input [(ngModel)]="newVacancy.title" name="title" id="title" class="form-control" placeholder="Título" required>
+  </div>
+  <div class="mb-3">
+    <label for="description" class="form-label">Descripción</label>
+    <textarea [(ngModel)]="newVacancy.description" name="description" id="description" class="form-control" placeholder="Descripción" rows="3" required (ngModelChange)="updateCharCount('description')"></textarea>
+    <div class="char-counter">{{descriptionCharCount}}/255</div>
+    <div *ngIf="descriptionCharCount > 255" style="color:#c0392b; font-size:0.9em;">Máximo 255 caracteres.</div>
+  </div>
+  <div class="mb-3">
+    <label for="requirements" class="form-label">Requisitos</label>
+    <textarea [(ngModel)]="newVacancy.requirements" name="requirements" id="requirements" class="form-control" placeholder="Requisitos" rows="3" required (ngModelChange)="updateCharCount('requirements')"></textarea>
+    <div class="char-counter">{{requirementsCharCount}}/255</div>
+    <div *ngIf="requirementsCharCount > 255" style="color:#c0392b; font-size:0.9em;">Máximo 255 caracteres.</div>
+  </div>
+  <div class="mb-3">
+    <label for="location" class="form-label">Ubicación</label>
+    <input [(ngModel)]="newVacancy.location" name="location" id="location" class="form-control" placeholder="Ubicación">
+  </div>
+  <div class="mb-3">
+    <label for="experienceYears" class="form-label">Años experiencia</label>
+    <input [(ngModel)]="newVacancy.experienceYears" name="experienceYears" id="experienceYears" class="form-control" type="number" placeholder="Años experiencia" min="1">
+  </div>
+  <button type="submit" class="btn btn-primary w-100">Crear</button>
+</form>

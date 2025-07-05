@@ -1,0 +1,84 @@
+<div class="container">
+  <h2 class="mb-4">Vacantes</h2>
+  <h4 class="mb-3">Filtros avanzados</h4>
+  <form class="row g-3 mb-4">
+    <div class="col-md-4">
+      <input [(ngModel)]="filter.skills" name="filterSkills" class="form-control" placeholder="Habilidades (skills)" (ngModelChange)="onFilterChange()">
+    </div>
+    <div class="col-md-3">
+      <input [(ngModel)]="filter.experienceYears" name="filterExperience" type="number" class="form-control" placeholder="Años experiencia" min="1" (ngModelChange)="onFilterChange()">
+    </div>
+    <div class="col-md-3">
+      <input [(ngModel)]="filter.location" name="filterLocation" class="form-control" placeholder="Ubicación" (ngModelChange)="onFilterChange()">
+    </div>
+  </form>
+  <div class="row">
+    <div class="col-md-6 mb-3" *ngFor="let v of vacancies">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">{{v.title}}</h5>
+          <p class="card-text"><strong>Requisitos:</strong> <span style='white-space:pre-line;'>{{v.requirements}}</span></p>
+          <p class="card-text"><strong>Descripción:</strong> <span style='white-space:pre-line;'>{{v.description}}</span></p>
+          <p class="card-text"><strong>Ubicación:</strong> {{v.location || 'Sin ubicación'}} | <strong>Años:</strong> {{v.experienceYears || 'N/A'}}</p>
+          <div class="d-flex gap-2">
+            <button class="btn btn-outline-primary btn-sm" (click)="editVacancy(v)">Editar</button>
+            <button class="btn btn-outline-danger btn-sm" (click)="confirmDeleteVacancy(v.id)">Eliminar</button>
+          </div>
+          <div *ngIf="deleteConfirmId === v.id" class="mt-2">
+            <div class="alert alert-warning p-2 mb-2">¿Seguro que deseas eliminar esta vacante?</div>
+            <button class="btn btn-danger btn-sm me-2" (click)="deleteVacancy(v.id)">Sí, eliminar</button>
+            <button class="btn btn-secondary btn-sm" (click)="deleteConfirmId = null">Cancelar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center align-items-center my-4">
+    <button class="btn btn-outline-secondary me-2" (click)="prevPage()" [disabled]="currentPage === 0">Anterior</button>
+    <span>Página {{currentPage + 1}} de {{totalPages}}</span>
+    <button class="btn btn-outline-secondary ms-2" (click)="nextPage()" [disabled]="currentPage === totalPages - 1">Siguiente</button>
+  </div>
+  <div *ngIf="editingVacancy">
+    <div class="modal-backdrop fade show" style="z-index:1040;"></div>
+    <div class="modal fade show d-block" tabindex="-1" style="background:rgba(0,0,0,0.3);z-index:1050;">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Editar Vacante</h5>
+            <button type="button" class="btn-close" (click)="cancelEdit()"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label class="form-label">Título</label>
+              <input [(ngModel)]="editingVacancy.title" class="form-control" placeholder="Título" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Descripción</label>
+              <textarea [(ngModel)]="editingVacancy.description" class="form-control" placeholder="Descripción" rows="3"></textarea>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Requisitos</label>
+              <textarea [(ngModel)]="editingVacancy.requirements" class="form-control" placeholder="Requisitos" rows="3"></textarea>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Ubicación</label>
+              <input [(ngModel)]="editingVacancy.location" class="form-control" placeholder="Ubicación" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Años de Experiencia</label>
+              <input [(ngModel)]="editingVacancy.experienceYears" class="form-control" placeholder="Años de Experiencia" type="number" min="1" />
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" (click)="saveVacancy()">Guardar</button>
+            <button class="btn btn-secondary" (click)="cancelEdit()">Cancelar</button>
+          </div>
+          <div *ngIf="editSuccess" class="alert alert-success m-3">
+            {{editSuccess}}
+            <button type="button" class="btn-close float-end" (click)="editSuccess = ''"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<div class="container py-4">
+  <h1 class="display-4 mb-4 text-center">Recruitment Agent Demo</h1>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary rounded mb-4 justify-content-center">
+    <div class="container-fluid justify-content-center">
+      <ul class="navbar-nav d-flex flex-row justify-content-center w-100 gap-3">
+        <li class="nav-item"><a class="nav-link text-white fw-semibold" routerLink="/create-vacancy" routerLinkActive="active">Crear Vacante</a></li>
+        <li class="nav-item"><a class="nav-link text-white fw-semibold" routerLink="/vacancies" routerLinkActive="active">Vacantes</a></li>
+        <li class="nav-item"><a class="nav-link text-white fw-semibold" routerLink="/analizar-cv" routerLinkActive="active">Analizar compatibilidad</a></li>
+        <li class="nav-item"><a class="nav-link text-white fw-semibold" routerLink="/cvs" routerLinkActive="active">CVs</a></li>
+        <li class="nav-item"><a class="nav-link text-white fw-semibold" routerLink="/metrics" routerLinkActive="active">Métricas</a></li>
+      </ul>
+    </div>
+  </nav>
+  <router-outlet></router-outlet>
+</div>

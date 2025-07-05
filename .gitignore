@@ -1,0 +1,41 @@
+# Node (Angular frontend)
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/cache/
+
+# Angular environment files
+frontend/src/environments/*.ts
+
+# Java (Spring Boot backend)
+backend/target/
+backend/.classpath
+backend/.project
+backend/.settings/
+backend/.idea/
+backend/*.iml
+
+# OS/Editor files
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.swp
+*.swo
+
+# Root-level node_modules (por si acaso)
+/node_modules/
+
+# IDEs
+.vscode/
+.idea/
+*.iml
+
+# Misc
+*.bak
+*.orig
+*.rej
+
+# Maven wrapper
+backend/.mvn/
+backend/mvnw
+backend/mvnw.cmd 

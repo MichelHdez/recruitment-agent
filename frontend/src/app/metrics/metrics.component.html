@@ -1,0 +1,43 @@
+<h2 class="mb-4">Métricas</h2>
+<button class="btn btn-success mb-3" (click)="exportMetrics()">Exportar a Excel</button>
+
+<div class="metrics-cards" style="gap:2.5em;">
+  <div class="card p-4" style="min-width:220px;">
+    <div class="card-title">CVs procesados</div>
+    <div class="card-value fs-4">{{metrics.cvsProcessed}}</div>
+  </div>
+  <div class="card p-4" style="min-width:220px;">
+    <div class="card-title">Aptos</div>
+    <div class="card-value apto fs-4">{{metrics.candidatesAptos}}</div>
+  </div>
+  <div class="card p-4" style="min-width:220px;">
+    <div class="card-title">No aptos</div>
+    <div class="card-value no-apto fs-4">{{metrics.candidatesNoAptos}}</div>
+  </div>
+  <div class="card p-4" style="min-width:220px;">
+    <div class="card-title">Promedio de experiencia</div>
+    <div class="card-value fs-5">{{metrics.avgExperience | number:'1.1-2'}} años</div>
+  </div>
+  <div class="card p-4" style="min-width:220px;">
+    <div class="card-title">Vacante con más candidatos</div>
+    <div class="card-value fs-6">{{metrics.topVacancy}}</div>
+  </div>
+  <div class="card p-4" style="min-width:220px;">
+    <div class="card-title">Último CV procesado</div>
+    <div class="card-value fs-6">{{metrics.lastCVDate | date:'medium'}}</div>
+  </div>
+</div>
+
+<div *ngIf="metrics.educationDistribution" class="education-dist">
+  <h3>Distribución de educación</h3>
+  <div class="education-bar">
+    <div *ngFor="let key of educationKeys()" class="education-segment" [style.width.%]="metrics.educationDistribution[key]" [style.background]="getColor(key)" style="min-width: 60px; display: inline-flex; align-items: center; justify-content: center;">
+      <span class="education-label" style="color: #fff; font-size: 0.95em; white-space: nowrap; text-shadow: 1px 1px 2px #000;">{{key}}<br>({{metrics.educationDistribution[key]}}%)</span>
+    </div>
+  </div>
+  <div class="education-legend">
+    <span *ngFor="let key of educationKeys()" class="legend-item">
+      <span class="legend-color" [style.background]="getColor(key)"></span> {{key}}
+    </span>
+  </div>
+</div>

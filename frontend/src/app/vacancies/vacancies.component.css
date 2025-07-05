@@ -1,0 +1,230 @@
+/* Estilos para el formulario de filtros */
+form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+  align-items: center;
+  margin-bottom: 1.5em;
+}
+form input {
+  flex: 1 1 180px;
+  min-width: 120px;
+}
+form button {
+  padding: 0.5em 1.5em;
+  font-weight: bold;
+}
+
+/* Lista de vacantes */
+ul {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  padding: 1em 1.5em;
+}
+ul li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.7em 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+ul li:last-child {
+  border-bottom: none;
+}
+ul li div {
+  flex: 1;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+ul li div:hover {
+  color: #2a4d7a;
+}
+ul li button {
+  margin-left: 0.5em;
+  background: #eaf1fb;
+  color: #2a4d7a;
+  border: 1px solid #bfc9d1;
+  transition: background 0.2s, color 0.2s;
+}
+ul li button:hover {
+  background: #2a4d7a;
+  color: #fff;
+}
+
+/* Paginación */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+  margin: 2em 0 1em 0;
+}
+.pagination button {
+  padding: 0.4em 1.2em;
+  border-radius: 20px;
+  border: 1px solid #2a4d7a;
+  background: #fff;
+  color: #2a4d7a;
+  font-weight: bold;
+  transition: background 0.2s, color 0.2s;
+}
+.pagination button:disabled {
+  background: #e0e0e0;
+  color: #aaa;
+  border-color: #ccc;
+  cursor: not-allowed;
+}
+.pagination button:not(:disabled):hover {
+  background: #2a4d7a;
+  color: #fff;
+}
+.pagination span {
+  font-size: 1.1em;
+  color: #2a4d7a;
+  font-weight: 500;
+}
+
+/* Edición de vacante */
+[ng-reflect-ng-if] > h3, h3 {
+  margin-top: 2em;
+  color: #1b3554;
+}
+[ng-reflect-ng-if] input, .editing input {
+  margin-bottom: 0.5em;
+  width: 100%;
+  max-width: 350px;
+  display: block;
+}
+
+.vacancy-card {
+  background: #f7faff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(42,77,122,0.07);
+  padding: 1em 1.5em;
+  margin-bottom: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.vacancy-card:hover {
+  background: #eaf1fb;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(42,77,122,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.modal {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(42,77,122,0.18);
+  padding: 2em 2.5em 1.5em 2.5em;
+  min-width: 420px;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  position: relative;
+  animation: modalIn 0.2s;
+}
+@keyframes modalIn {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+.modal h3 {
+  text-align: center;
+  color: #2a4d7a;
+  margin-bottom: 0.5em;
+}
+.modal label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+  color: #2a4d7a;
+}
+.modal input, .modal textarea {
+  margin-top: 0.3em;
+  font-size: 1em;
+  padding: 0.6em 1em;
+  border-radius: 4px;
+  border: 1px solid #bfc9d1;
+  outline: none;
+  resize: none;
+}
+.modal textarea {
+  min-height: 70px;
+  max-height: 200px;
+  resize: vertical;
+}
+.modal button {
+  margin-top: 0.7em;
+  padding: 0.7em 1.5em;
+  font-size: 1.1em;
+  font-weight: bold;
+  background: #2a4d7a;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.modal button:hover {
+  background: #1b3554;
+}
+.edit-success {
+  position: relative;
+  padding-right: 2em;
+  color: #2a4d7a;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 1em;
+}
+.close-success {
+  position: absolute;
+  right: 0.7em;
+  top: 0.7em;
+  background: none;
+  border: none;
+  font-size: 1.3em;
+  color: #2a4d7a;
+  cursor: pointer;
+  font-weight: bold;
+  line-height: 1;
+}
+.delete-confirm {
+  background: #fffbe6;
+  border: 1px solid #ffe58f;
+  border-radius: 8px;
+  padding: 1em;
+  margin: 1em 0;
+  color: #ad6800;
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  font-size: 1em;
+}
+.delete-confirm button {
+  background: #c0392b;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5em 1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.delete-confirm button:last-child {
+  background: #bfc9d1;
+  color: #2a4d7a;
+}
+.delete-confirm button:hover {
+  background: #a93226;
+}

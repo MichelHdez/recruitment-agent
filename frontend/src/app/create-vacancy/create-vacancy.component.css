@@ -1,0 +1,27 @@
+.vacancy-form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+.vacancy-form .form-label {
+  font-size: 1.15rem;
+  font-weight: 500;
+  margin-bottom: 0.4em;
+  color: #2a4d7a;
+  display: block;
+  margin-left: 10%;
+  text-align: left;
+}
+.vacancy-form .char-counter {
+  font-size: 0.9em;
+  color: #888;
+  margin-left: 10%;
+  display: block;
+}
+.vacancy-form .form-control {
+  width: 80%;
+  margin: 0 auto 0.5em auto;
+  display: block;
+}
+.vacancy-form button[type="submit"] {
+  margin-top: 1em;
+}

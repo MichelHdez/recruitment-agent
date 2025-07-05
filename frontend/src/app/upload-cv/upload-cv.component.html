@@ -1,0 +1,33 @@
+<h2>Subir CV</h2>
+
+<div>
+  <p>Selecciona una vacante para subir un CV.</p>
+  <ul>
+    <li *ngFor="let v of vacancies" (click)="selectedVacancy = v" (keydown)="onVacancyKeyDown($event, v)" [class.selected]="selectedVacancy?.id === v.id" class="selectable" style="cursor:pointer;">
+      {{v.title}} - {{v.requirements}} - {{v.location || 'Sin ubicación'}} - {{v.experienceYears || 'N/A'}} años
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="selectedVacancy">
+  <p>Vacante seleccionada: <strong>{{selectedVacancy.title}}</strong></p>
+  <input type="text" [(ngModel)]="candidateName" placeholder="Nombre del candidato">
+  <div *ngIf="candidateNameError" style="color: #c0392b; margin-bottom: 0.5em; font-weight: 500;">{{candidateNameError}}</div>
+  <input type="number" [(ngModel)]="candidateExperience" min="1" placeholder="Años de experiencia del candidato">
+  <div *ngIf="candidateExperienceError" style="color: #c0392b; margin-bottom: 0.5em; font-weight: 500;">{{candidateExperienceError}}</div>
+  <textarea [(ngModel)]="cvText" rows="7" placeholder="Pega aquí el texto del CV o la descripción del candidato..."></textarea>
+  <button (click)="analyzeCVText()" [disabled]="!cvText || !selectedVacancy">Analizar compatibilidad</button>
+  <button (click)="saveCandidateAnalysis()" [disabled]="!analysisResult || !candidateName || candidateExperience == null">Guardar análisis y registrar candidato</button>
+  <div *ngIf="saveSuccess" style="color: #2a4d7a; font-weight: bold;">{{saveSuccess}}</div>
+  <div *ngIf="saveError" style="color: #c0392b; font-weight: bold;">{{saveError}}</div>
+  <div *ngIf="analysisResult" class="analysis-result">
+    <h4>Resultado del análisis:</h4>
+    <div [innerHTML]="analysisResult"></div>
+  </div>
+  <div *ngIf="analysisLoading" style="color:#2a4d7a; font-weight:bold;">Analizando compatibilidad...</div>
+  <div *ngIf="analysisError" style="color:#c0392b; font-weight:bold;">{{analysisError}}</div>
+</div>
+
+<div *ngIf="!selectedVacancy">
+  <p>Por favor, selecciona una vacante de la lista de arriba para continuar.</p>
+</div>
