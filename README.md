@@ -80,18 +80,43 @@ Recruitment Agent VSC/
 
 ### Backend
 
-1. Navega a la carpeta `backend`:
-   ```powershell
-   cd backend
-   ```
-2. Compila y ejecuta:
-   ```powershell
-   mvn spring-boot:run
-   ```
-   O ejecuta el JAR:
-   ```powershell
-   java -jar target/recruitment-agent-1.0.0.jar
-   ```
+> ⚠️ **IMPORTANTE:** Para usar la funcionalidad de análisis de compatibilidad, debes definir la variable de entorno `COHERE_API_KEY` con tu clave de Cohere **antes de arrancar el backend**. Así, la clave nunca queda expuesta en archivos del proyecto ni en el repositorio.
+
+#### 1. Navega a la carpeta `backend`:
+```powershell
+cd backend
+```
+
+#### 2. Ejecuta el backend **definiendo la variable solo para el comando**:
+
+##### **Windows (CMD clásico):**
+```cmd
+set COHERE_API_KEY=tu_api_key_real && mvn spring-boot:run
+```
+O si ejecutas el JAR:
+```cmd
+set COHERE_API_KEY=tu_api_key_real && java -jar target/recruitment-agent-1.0.0.jar
+```
+
+##### **Windows (PowerShell):**
+```powershell
+$env:COHERE_API_KEY="tu_api_key_real"; mvn spring-boot:run
+```
+O:
+```powershell
+$env:COHERE_API_KEY="tu_api_key_real"; java -jar target/recruitment-agent-1.0.0.jar
+```
+
+##### **Linux/Mac:**
+```bash
+COHERE_API_KEY=tu_api_key_real mvn spring-boot:run
+```
+O:
+```bash
+COHERE_API_KEY=tu_api_key_real java -jar target/recruitment-agent-1.0.0.jar
+```
+
+> Así, la clave solo existe durante la ejecución del backend y nunca queda expuesta globalmente.
 
 ### Frontend
 
